@@ -12,7 +12,7 @@ namespace Snake
 {
     public partial class Form1 : Form
     {
-        private PictureBox[] snake = new PictureBox[400];
+        public PictureBox[] snake = new PictureBox[400];
         private int ri,rj;
         private PictureBox fruit;     
         private int dirX;             
@@ -20,7 +20,7 @@ namespace Snake
         private int _width = 600;     
         private int _height = 600;    
         private int _SizeOfSize = 40;      
-        private int Score=0;
+        public int Score=0;
         private Label labelScore;
 
         /// <summary>
@@ -143,22 +143,23 @@ namespace Snake
         /// <summary>
         /// zakończenia gry
         /// </summary>
-        private void _eatSnake()
+        public string _eatSnake()
         {
-           for (int _i = 1; _i < Score; _i++)
+            for (int _i = 1; _i < Score; _i++)
             {
                 if (snake[0].Location == snake[_i].Location)
                 {
                     for (int _j = _i; _j <= Score; _j++)
-                    this.Controls.Remove(snake[_j]);
+                        this.Controls.Remove(snake[_j]);
                     Score = Score - (Score - _i + 1);
-                   Form Form2 = new Form2();
+                    Form Form2 = new Form2();
                     Form2.Show();
                     Hide();
-                    Application.Restart();                       
+                    Application.Restart();
 
                 }
             }
+            return "snake eaten";
         }
 
         /// <summary>
